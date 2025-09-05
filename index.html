@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baú da Sorte Widget - CDN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 50%, #0d0704 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .code-block {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        #bau-da-sorte-widget {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎰 Baú da Sorte Widget - CDN</h1>
+        
+        <div class="demo-section">
+            <h2>📦 Como usar via CDN</h2>
+            <p>Adicione o script ao seu HTML:</p>
+            <div class="code-block">
+&lt;script src="https://cdn.bau-da-sorte.com/latest.js"&gt;&lt;/script&gt;
+            </div>
+            
+            <p>Inicialize o widget:</p>
+            <div class="code-block">
+const widget = new BauDaSorteWidget({
+  containerId: 'bau-da-sorte-widget',
+  apiUrl: 'https://api.bau-da-sorte.com',
+  apiKey: 'sua-api-key-aqui'
+});
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🎮 Demo ao vivo</h2>
+            <p>Teste o widget abaixo:</p>
+            <button class="btn" onclick="testValidApiKey()">Testar API Key Válida</button>
+            <button class="btn" onclick="testInvalidApiKey()">Testar API Key Inválida</button>
+            <button class="btn" onclick="testDemoMode()">Modo Demo</button>
+            <button class="btn" onclick="clearWidget()">Limpar</button>
+            
+            <div id="bau-da-sorte-widget"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>📊 Informações</h2>
+            <ul>
+                <li><strong>Tamanho:</strong> ~34 KB (minificado)</li>
+                <li><strong>Gzip:</strong> ~12 KB</li>
+                <li><strong>Compatibilidade:</strong> Todos os navegadores modernos</li>
+                <li><strong>Dependências:</strong> Nenhuma</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Carregar widget via CDN local -->
+    <script src="latest.js"></script>
+    <script>
+        let currentWidget = null;
+
+        function testValidApiKey() {
+            clearWidget();
+            currentWidget = new BauDaSorteWidget({
+                containerId: 'bau-da-sorte-widget',
+                apiUrl: 'http://localhost:3000',
+                apiKey: 'example-api-key-123',
+                onError: (error) => {
+                    console.error('❌ Erro:', error.message);
+                }
+            });
+        }
+
+        function testInvalidApiKey() {
+            clearWidget();
+            currentWidget = new BauDaSorteWidget({
+                containerId: 'bau-da-sorte-widget',
+                apiUrl: 'http://localhost:3000',
+                apiKey: 'api-key-invalida',
+                onError: (error) => {
+                    console.error('❌ Erro:', error.message);
+                }
+            });
+        }
+
+        function testDemoMode() {
+            clearWidget();
+            currentWidget = new BauDaSorteWidget({
+                containerId: 'bau-da-sorte-widget',
+                apiUrl: 'http://api-inexistente.com',
+                apiKey: 'demo-key',
+                onError: (error) => {
+                    console.error('❌ Erro:', error.message);
+                }
+            });
+        }
+
+        function clearWidget() {
+            if (currentWidget) {
+                currentWidget.destroy();
+                currentWidget = null;
+            }
+            document.getElementById('bau-da-sorte-widget').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "bau-da-sorte-widget-cdn",
+  "version": "1.0.0",
+  "description": "CDN distribution for Baú da Sorte Widget",
+  "main": "latest.js",
+  "files": [
+    "v1.0.0/",
+    "latest.js",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run copy-files",
+    "copy-files": "node copy-cdn-files.js",
+    "deploy": "echo 'Deploy to your CDN provider'"
+  },
+  "keywords": [
+    "casino",
+    "gaming",
+    "widget",
+    "sdk",
+    "cdn",
+    "bau-da-sorte"
+  ],
+  "author": "Baú da Sorte Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bau-da-sorte/widget.git"
+  },
+  "homepage": "https://cdn.bau-da-sorte.com"
+}
